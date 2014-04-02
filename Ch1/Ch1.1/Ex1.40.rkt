@@ -1,12 +1,5 @@
 #lang racket
 
-(define (average a b) (/ (+ a b) 2.0))
-
-(define (average-damp f)
-  (λ (x) (average x (f x))))
-
-((average-damp (λ (x) (* x x))) 10)
-
 (define (close? a b)
   (< (abs (- a b)) 0.0001))
 
@@ -21,17 +14,6 @@
 (define (fixed-p-of-transform g transform guess)
   (fixed-point (transform g) guess))
 
-(define (sqrt-a x)
-  (fixed-p-of-transform (λ (y) (/ x y)) average-damp 1.0))
-
-(sqrt 2)
-
-(sqrt-a 2)
-
-(define (cube-root x)
-  (fixed-point (average-damp (λ (y) (/ x (* y y))))
-               1.0))
-
 (define dx 0.00000001)
 
 (define (deriv g)
@@ -39,14 +21,17 @@
     (/ (- (g (+ x dx)) (g x))
        dx)))
 
-(define (cube x) (* x x x))
-(define (square x) (* x x))
-
 (define (newton-transform g)
   (λ (x)
     (- x(/ (g x) ((deriv g) x)))))
 
-(define (sqrt-n x)
-  (fixed-p-of-transform (λ (y) (- (square y) x)) newton-transform 1.0))
+(define (pol a b c d x)
+  (+ (* a x x x) (* b x x) (* c x) d))
 
-(sqrt-n 2)
+(define (cubic a b c d)
+  (fixed-p-of-transform 
+   (λ (y) (pol a b c d y)) 
+   newton-transform
+   1.0))
+
+(cubic 1 1 -2 -4)
