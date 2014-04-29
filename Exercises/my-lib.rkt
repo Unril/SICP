@@ -27,33 +27,33 @@
 
 ; ==== Vectors 2D ====
 
-(provide vect
+(provide make-vect
          vect-x
          vect-y
          vect-add
          vect-sub
          vect-scale)
 
-{define (vect x y)
-  (cons x y)}
+{define (make-vect x y)
+  (list x y)}
 
 {define (vect-x v)
-  (car v)}
+  (first v)}
 
 {define (vect-y v)
-  (cdr v)}
+  (second v)}
 
 {define (vect-add v1 v2)
-  (vect (+ (vect-x v1) (vect-x v2))
+  (make-vect (+ (vect-x v1) (vect-x v2))
         (+ (vect-y v1) (vect-y v2)))}
 
 {define (vect-neg v)
-  (vect (- (vect-x v))
+  (make-vect (- (vect-x v))
         (- (vect-y v)))}
 
 {define (vect-sub v1 v2)
   (vect-add v1 (vect-neg v2))}
 
 {define (vect-scale v factor)
-  (vect (* (vect-x v) factor) 
+  (make-vect (* (vect-x v) factor) 
         (* (vect-y v) factor))}
