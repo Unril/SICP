@@ -34,7 +34,8 @@
 
 (provide make-segment
          segment-start
-         segment-end)
+         segment-end
+         seqments->painter)
 
 {define (make-segment vect1 vect2)
   (list vect1 vect2)}
@@ -45,8 +46,6 @@
 {define (segment-end segment)
   (second segment)}
 
-{define scale-factor 10}
-
 {define (draw-line image vect1 vect2)
   (add-line image 
             (vect-x vect1) (vect-y vect1)
@@ -54,8 +53,8 @@
             "black")}
 
 
-{define (seqments->painter image segments)
-  {λ (frame)
+{define (seqments->painter segments)
+  {λ (image frame)
     (foldl
      {λ (segment image)
        (draw-line image
@@ -64,9 +63,24 @@
      image
      segments)}}
 
-(define pt (seqments->painter
-            (empty-scene 100 100)
-            (list (make-segment (make-vect 0 0) (make-vect 30 40)))))
+(provide outline-painter
+         x-painter
+         rhombus-painter)
 
-;(pt (make-frame (make-vect 0 0)  (make-vect 1 0)  (make-vect 0 1)))
+(define outline-painter
+  (seqments->painter (list (make-segment (make-vect 0 0) (make-vect 1 0))
+                           (make-segment (make-vect 1 0) (make-vect 1 1))
+                           (make-segment (make-vect 1 1) (make-vect 0 1))
+                           (make-segment (make-vect 0 1) (make-vect 0 0)))))
+
+(define x-painter
+  (seqments->painter (list (make-segment (make-vect 0 0) (make-vect 1 1))
+                           (make-segment (make-vect 0 1) (make-vect 1 0)))))
+
+(define rhombus-painter
+  (seqments->painter (list (make-segment (make-vect 0.5 0) (make-vect 0 0.5))
+                           (make-segment (make-vect 0 0.5) (make-vect 0.5 1))
+                           (make-segment (make-vect 0.5 1) (make-vect 1 0.5))
+                           (make-segment (make-vect 1 0.5) (make-vect 0.5 0)))))
+
 
