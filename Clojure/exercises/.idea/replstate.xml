@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ReplState" timestamp="1400432270706">{:repl-history {:ide [], :local [], :remote []}}</component>
+  <component name="ReplState" timestamp="1401911275728">{:repl-history {:ide [], :local [&quot;(make-leaf 1 2)&quot; &quot;(def lf (make-leaf 1 2))&quot; &quot;(leaf? lf\n       )&quot; &quot;(leaf? lf)&quot; &quot;(leaf? (list 'aa 2 3\n             ))&quot; &quot;lf&quot; &quot;(symbol-leaf lf)&quot; &quot;(weight-leaf lf)&quot;], :remote []}}</component>
 </project>
 
