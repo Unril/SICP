@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ReplState" timestamp="1401997367556">{:repl-history {:ide [], :local [&quot;(make-leaf 1 2)&quot; &quot;(def lf (make-leaf 1 2))&quot; &quot;(leaf? lf\n       )&quot; &quot;(leaf? lf)&quot; &quot;(leaf? (list 'aa 2 3\n             ))&quot; &quot;lf&quot; &quot;(symbol-leaf lf)&quot; &quot;(weight-leaf lf)&quot;], :remote []}}</component>
+  <component name="ReplState" timestamp="1404059444202">{:repl-history {:ide [], :local [&quot;(make-leaf 1 2)&quot; &quot;(def lf (make-leaf 1 2))&quot; &quot;(leaf? lf\n       )&quot; &quot;(leaf? lf)&quot; &quot;(leaf? (list 'aa 2 3\n             ))&quot; &quot;lf&quot; &quot;(symbol-leaf lf)&quot; &quot;(weight-leaf lf)&quot; &quot;(conj '(1 2 3) '(1 3 5\n                 ))&quot; &quot;(conj '(1 2 3) '(1 3 5))&quot; &quot;(cons\n    '(1 2 3) '(1 3 5))&quot; &quot;(append '(1 2 3) '(1 3 5))&quot; &quot;(concat\n    '(1 2 3) '(1 3 5))&quot; &quot;(concat '(1 2) '(3 4))&quot; &quot;(concat '(1 2) '4)&quot; &quot;(append! '(1 2) '4)&quot; &quot;(conj '(1 2) '4)&quot; &quot;(conj '4 '(1 2))&quot;], :remote []}}</component>
 </project>
 

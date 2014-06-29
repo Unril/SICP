@@ -126,14 +126,15 @@
                   (make-leaf-set (rest pairs))))))
 
 (deftest make-leaf-set-tests
-  (let [pairs (list '(a 2) '(b 1) '(c 3))]
+  (let [pairs '((a 2) (b 1) (c 3))]
     (testing "Should get empty set when pass empty set"
       (is (= '() (make-leaf-set '()))))
     (testing "Should create orgered set of leafs"
       (is (= '((:leaf b 1) (:leaf a 2) (:leaf c 3)) (make-leaf-set pairs))))))
 
-
+;-------------------------------
 ; exercise 2.67
+;-------------------------------
 
 (def sample-tree
   (make-tree (make-leaf 'a 4)
@@ -149,9 +150,9 @@
   (testing "Should decode sample message"
     (is (= sample-data (decode sample-message sample-tree)))))
 
-
+;***********************
 ; exercise 2.68
-
+;***********************
 
 (defn check-symbol
   [tree symbol]
@@ -186,3 +187,22 @@
   (testing "Should encode sample message"
     (is (= sample-message (encode sample-data sample-tree)))))
 
+;-------------------------------
+; exercise 2.69
+;-------------------------------
+
+(defn successive-merge
+  [leafs]
+  (if (< (count leafs) 2)
+    (first leafs)
+    (make-tree (first leafs) (successive-merge (rest leafs)))))
+
+(defn generate-huffman-tree
+  [pairs]
+  (successive-merge (reverse (make-leaf-set pairs))))
+
+(deftest generate-huffman-tree-tests
+  (testing "Should generate huffman tree from pairs"
+    (is (= (make-leaf 'a 4) (generate-huffman-tree '((a 4)))))
+    (is (= (make-tree (make-leaf 'a 4) (make-leaf 'b 2)) (generate-huffman-tree '((a 4) (b 2)))))
+    (is (= sample-tree (generate-huffman-tree '((a 4) (d 1) (b 2) (c 1)))))))
